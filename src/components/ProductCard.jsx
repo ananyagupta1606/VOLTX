@@ -52,7 +52,7 @@ function ProductCard({ product, onAddToCart, onViewDetail }) {
 				)}
 
 				<img
-					src={p.image}
+					src={p.images?.[0]}
 					alt={p.name}
 					loading="lazy"
 					className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300"
