@@ -1,9 +1,13 @@
 import { memo } from "react";
 import ProductCard from "./ProductCard";
 
-function ProductGrid({ products, category, onAddToCart, onViewDetail }) {
+function ProductGrid({
+	products = [],
+	category = "All",
+	onAddToCart,
+	onViewDetail,
+}) {
 	const title = category === "All" ? "All Products" : category;
-
 	const itemCount = products.length;
 
 	return (
@@ -12,7 +16,7 @@ function ProductGrid({ products, category, onAddToCart, onViewDetail }) {
 			aria-live="polite"
 		>
 			<div className="max-w-7xl mx-auto">
-				{/* Section header */}
+				{/* Header */}
 				<div className="flex justify-between items-baseline mb-6">
 					<h2 className="text-white font-extrabold text-2xl tracking-tight">
 						{title}
@@ -23,7 +27,7 @@ function ProductGrid({ products, category, onAddToCart, onViewDetail }) {
 					</span>
 				</div>
 
-				{/* Empty state */}
+				{/* Empty State */}
 				{itemCount === 0 ? (
 					<div className="text-center py-24 text-gray-500">
 						<div className="text-5xl mb-4 animate-pulse">🔍</div>
@@ -36,10 +40,10 @@ function ProductGrid({ products, category, onAddToCart, onViewDetail }) {
 					</div>
 				) : (
 					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 transition-all duration-300">
-						{products.map((p) => (
+						{products.map((product) => (
 							<ProductCard
-								key={p.id}
-								product={p}
+								key={product.id}
+								product={product}
 								onAddToCart={onAddToCart}
 								onViewDetail={onViewDetail}
 							/>

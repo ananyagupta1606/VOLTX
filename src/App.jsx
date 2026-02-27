@@ -1,6 +1,7 @@
-import { useState, useRef, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { PRODUCTS } from "./data/products";
 import { useCart } from "./context/CartContext";
+import { useToast } from "./hooks/useToast";
 
 import Navbar from "./components/Navbar";
 import HeroBanner from "./components/HeroBanner";
@@ -13,30 +14,25 @@ import Toast from "./components/Toast";
 import Footer from "./components/Footer";
 
 export default function App() {
+	/* ==============================
+	   Context Hooks
+	================================ */
 	const { cart, addToCart, updateQty, cartCount } = useCart();
+	const { notif, toast } = useToast();
 
+	/* ==============================
+	   Local State
+	================================ */
 	const [search, setSearch] = useState("");
 	const [category, setCategory] = useState("All");
 	const [cartOpen, setCartOpen] = useState(false);
 	const [authOpen, setAuthOpen] = useState(false);
 	const [detail, setDetail] = useState(null);
 	const [user, setUser] = useState(null);
-	const [notif, setNotif] = useState(null);
-
-	const toastTimer = useRef(null);
 
 	/* ==============================
-        Toast Handler
-  ============================== */
-	const toast = useCallback((msg, icon = "✅") => {
-		setNotif({ msg, icon });
-		clearTimeout(toastTimer.current);
-		toastTimer.current = setTimeout(() => setNotif(null), 2600);
-	}, []);
-
-	/* ==============================
-        Cart Handler
-  ============================== */
+	   Cart Handler
+	================================ */
 	const handleAddToCart = useCallback(
 		(product) => {
 			addToCart(product);
@@ -46,8 +42,8 @@ export default function App() {
 	);
 
 	/* ==============================
-        Auth Handlers
-  ============================== */
+	   Auth Handlers
+	================================ */
 	const handleAuth = useCallback(
 		(userData) => {
 			setUser(userData);
@@ -63,8 +59,8 @@ export default function App() {
 	}, [toast]);
 
 	/* ==============================
-        Filter Products (Optimized)
-  ============================== */
+	   Filter Products
+	================================ */
 	const filteredProducts = useMemo(() => {
 		return PRODUCTS.filter((p) => {
 			const matchCat = category === "All" || p.cat === category;
@@ -77,6 +73,9 @@ export default function App() {
 		});
 	}, [category, search]);
 
+	/* ==============================
+	   Scroll Helper
+	================================ */
 	const scrollToProducts = useCallback(() => {
 		document
 			.getElementById("products")
@@ -99,7 +98,7 @@ export default function App() {
 			{/* Hero */}
 			<HeroBanner onShopNow={scrollToProducts} />
 
-			{/* Category */}
+			{/* Categories */}
 			<CategoryBar active={category} onChange={setCategory} />
 
 			{/* Products */}
@@ -136,7 +135,7 @@ export default function App() {
 				/>
 			)}
 
-			{/* Product Detail */}
+			{/* Product Detail Modal */}
 			{detail && (
 				<ProductDetail
 					product={detail}
