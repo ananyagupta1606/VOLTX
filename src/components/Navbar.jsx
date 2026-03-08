@@ -83,7 +83,7 @@ export default function Navbar({
 						onClick={onCartOpen}
 						className="flex items-center gap-2 bg-gray-800 border border-gray-700 text-white px-3 sm:px-4 py-2 rounded-lg text-sm hover:border-cyan-400 hover:text-cyan-400 transition-colors"
 					>
-						<span>🛒</span>
+						{/* <span>🛒</span> */}
 						<span className="hidden sm:inline">Cart</span>
 
 						{cartCount > 0 && (

@@ -4,7 +4,7 @@ export function useToast() {
 	const [notif, setNotif] = useState(null);
 	const timerRef = useRef(null);
 
-	const toast = useCallback((msg, icon = "✅") => {
+	const toast = useCallback((msg, icon = null) => {
 		setNotif({ msg, icon });
 
 		if (timerRef.current) {

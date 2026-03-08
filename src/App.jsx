@@ -47,7 +47,7 @@ export default function App() {
 	const handleAddToCart = useCallback(
 		(product) => {
 			addToCart(product);
-			toast(`${product.name} added to cart`, "🛒");
+			toast(`${product.name} added to cart`);
 		},
 		[addToCart, toast]
 	);
@@ -59,7 +59,7 @@ export default function App() {
 		(userData) => {
 			setUser(userData);
 			setAuthOpen(false);
-			toast(`Welcome, ${userData.name}!`, "⚡");
+			toast(`Welcome, ${userData.name}!`);
 		},
 		[toast]
 	);
@@ -67,7 +67,7 @@ export default function App() {
 	const handleSignOut = useCallback(() => {
 		localStorage.removeItem("currentUser");
 		setUser(null);
-		toast("Signed out successfully", "👋");
+		toast("Signed out successfully");
 	}, [toast]);
 
 	/* ==============================
@@ -136,11 +136,11 @@ export default function App() {
 					onCheckout={() => {
 						if (!user) {
 							setAuthOpen(true);
-							toast("Please login to continue", "🔐");
+							toast("Please login to continue");
 							return;
 						}
 
-						toast("Order placed successfully!", "🎉");
+						toast("Order placed successfully!");
 						setCartOpen(false);
 					}}
 				/>

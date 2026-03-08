@@ -6,14 +6,14 @@ export default function useAuth(toast) {
 	const login = useCallback(
 		(userData) => {
 			setUser(userData);
-			toast(`Welcome, ${userData.name}!`, "⚡");
+			toast(`Welcome, ${userData.name}!`);
 		},
 		[toast]
 	);
 
 	const logout = useCallback(() => {
 		setUser(null);
-		toast("Signed out successfully", "👋");
+		toast("Signed out successfully");
 	}, [toast]);
 
 	return { user, login, logout };

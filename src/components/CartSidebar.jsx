@@ -1,7 +1,7 @@
 import { useCart } from "../context/CartContext";
 
 export default function CartSidebar({ onClose, onCheckout }) {
-	const { cart, updateQty, cartTotal, cartCount } = useCart();
+	const { cart, updateQty, cartTotal, cartCount, clearCart } = useCart();
 
 	return (
 		<>
@@ -16,7 +16,7 @@ export default function CartSidebar({ onClose, onCheckout }) {
 				{/* Header */}
 				<div className="flex items-center justify-between px-5 py-4 border-b border-gray-700">
 					<h2 className="text-white font-extrabold text-lg">
-						🛒 Your Cart
+						 Your Cart
 						<span className="ml-2 text-gray-400 font-normal text-sm">
 							({cartCount} item{cartCount !== 1 ? "s" : ""})
 						</span>
@@ -32,12 +32,14 @@ export default function CartSidebar({ onClose, onCheckout }) {
 
 				{/* Items */}
 				<div className="flex-1 overflow-y-auto p-4 flex flex-col gap-3">
+					{/* Empty Cart */}
 					{cart.length === 0 ? (
 						<div className="text-center py-16">
 							<div className="text-5xl mb-3">🛒</div>
 							<p className="text-gray-400 mb-5">
 								Your cart is empty
 							</p>
+
 							<button
 								onClick={onClose}
 								className="bg-cyan-400 text-gray-950 font-bold px-6 py-2.5 rounded-xl hover:bg-cyan-300 transition-colors text-sm"
@@ -46,85 +48,100 @@ export default function CartSidebar({ onClose, onCheckout }) {
 							</button>
 						</div>
 					) : (
-						cart.map((item) => (
-							<div
-								key={item.id}
-								className="bg-gray-800 border border-gray-700 rounded-xl p-3 flex gap-3"
-							>
-								{/* Image (instead of emoji now) */}
-								<div className="w-12 h-12 rounded-lg bg-gray-900 flex items-center justify-center overflow-hidden">
-									{item.image ? (
-										<img
-											src={item.image}
-											alt={item.name}
-											className="w-full h-full object-contain"
-										/>
-									) : (
-										<span className="text-2xl">📦</span>
-									)}
-								</div>
+						<>
+							{/* Clear Cart */}
+							<div className="flex justify-end mb-1">
+								<button
+									onClick={clearCart}
+									className="text-xs text-red-400 hover:text-red-300 transition-colors"
+								>
+									Clear Cart
+								</button>
+							</div>
 
-								{/* Info */}
-								<div className="flex-1 min-w-0">
-									<p className="text-white font-semibold text-sm truncate">
-										{item.name}
-									</p>
-									<p className="text-cyan-400 font-mono text-xs mt-0.5">
-										${item.price.toLocaleString()}
-									</p>
+							{/* Cart Items */}
+							{cart.map((item) => (
+								<div
+									key={item.id}
+									className="bg-gray-800 border border-gray-700 rounded-xl p-3 flex gap-3"
+								>
+									{/* Image */}
+									<div className="w-12 h-12 rounded-lg bg-gray-900 flex items-center justify-center overflow-hidden">
+										{item.image ? (
+											<img
+												src={item.image}
+												alt={item.name}
+												className="w-full h-full object-contain"
+											/>
+										) : (
+											<span className="text-2xl">📦</span>
+										)}
+									</div>
 
-									{/* Quantity Controls */}
-									<div className="flex items-center gap-2 mt-2">
-										<button
-											onClick={() =>
-												updateQty(item.id, -1)
-											}
-											className="w-6 h-6 rounded bg-gray-700 border border-gray-600 text-gray-300 flex items-center justify-center text-sm hover:border-cyan-400 hover:text-cyan-400 transition-colors"
-										>
-											−
-										</button>
+									{/* Info */}
+									<div className="flex-1 min-w-0">
+										<p className="text-white font-semibold text-sm truncate">
+											{item.name}
+										</p>
 
-										<span className="text-white font-mono text-sm min-w-[20px] text-center">
-											{item.qty}
+										<p className="text-cyan-400 font-mono text-xs mt-0.5">
+											${item.price.toLocaleString()}
+										</p>
+
+										{/* Quantity Controls */}
+										<div className="flex items-center gap-2 mt-2">
+											<button
+												onClick={() =>
+													updateQty(item.id, -1)
+												}
+												className="w-6 h-6 rounded bg-gray-700 border border-gray-600 text-gray-300 flex items-center justify-center text-sm hover:border-cyan-400 hover:text-cyan-400 transition-colors"
+											>
+												−
+											</button>
+
+											<span className="text-white font-mono text-sm min-w-[20px] text-center">
+												{item.qty}
+											</span>
+
+											<button
+												onClick={() =>
+													updateQty(item.id, 1)
+												}
+												className="w-6 h-6 rounded bg-gray-700 border border-gray-600 text-gray-300 flex items-center justify-center text-sm hover:border-cyan-400 hover:text-cyan-400 transition-colors"
+											>
+												+
+											</button>
+										</div>
+									</div>
+
+									{/* Subtotal + Remove */}
+									<div className="flex flex-col items-end justify-between flex-shrink-0">
+										<span className="text-white font-semibold text-sm">
+											$
+											{(
+												item.price * item.qty
+											).toLocaleString()}
 										</span>
 
 										<button
 											onClick={() =>
-												updateQty(item.id, 1)
+												updateQty(item.id, -item.qty)
 											}
-											className="w-6 h-6 rounded bg-gray-700 border border-gray-600 text-gray-300 flex items-center justify-center text-sm hover:border-cyan-400 hover:text-cyan-400 transition-colors"
+											className="text-gray-500 hover:text-red-400 transition-colors text-xs"
 										>
-											+
+											🗑️
 										</button>
 									</div>
 								</div>
-
-								{/* Subtotal + Remove */}
-								<div className="flex flex-col items-end justify-between flex-shrink-0">
-									<span className="text-white font-semibold text-sm">
-										$
-										{(
-											item.price * item.qty
-										).toLocaleString()}
-									</span>
-
-									<button
-										onClick={() =>
-											updateQty(item.id, -item.qty)
-										}
-										className="text-gray-500 hover:text-red-400 transition-colors text-xs"
-									>
-										🗑️
-									</button>
-								</div>
-							</div>
-						))
+							))}
+						</>
 					)}
 				</div>
 
 				{/* Footer */}
 				{cart.length > 0 && (
 					<div className="p-4 border-t border-gray-700 bg-gray-900">
+						{/* Subtotal */}
 						<div className="flex justify-between text-sm mb-2">
 							<span className="text-gray-400">Subtotal</span>
 							<span className="text-white font-mono">
@@ -132,22 +149,40 @@ export default function CartSidebar({ onClose, onCheckout }) {
 							</span>
 						</div>
 
-						<div className="flex justify-between text-sm mb-3">
+						{/* Shipping */}
+						<div className="flex justify-between text-sm mb-2">
 							<span className="text-gray-400">Shipping</span>
 							<span className="text-green-400 font-semibold">
 								Free
 							</span>
 						</div>
 
+						{/* Delivery */}
+						<div className="flex justify-between text-xs text-gray-500 mb-3">
+							<span>Estimated delivery</span>
+							<span>2–4 business days</span>
+						</div>
+
+						{/* Total */}
 						<div className="flex justify-between items-center mb-4 pt-2 border-t border-gray-700">
 							<span className="text-white font-bold text-base">
 								Total
 							</span>
+
 							<span className="text-white font-extrabold text-2xl">
 								${cartTotal.toLocaleString()}
 							</span>
 						</div>
 
+						{/* Continue Shopping */}
+						<button
+							onClick={onClose}
+							className="w-full border border-gray-700 text-gray-300 py-2 rounded-lg mb-3 hover:border-cyan-400 hover:text-cyan-400 transition-colors text-sm"
+						>
+							Continue Shopping
+						</button>
+
+						{/* Checkout */}
 						<button
 							onClick={onCheckout}
 							className="w-full bg-cyan-400 text-gray-950 font-bold py-3.5 rounded-xl hover:bg-cyan-300 transition-all shadow-[0_0_20px_rgba(34,211,238,0.3)] text-sm"

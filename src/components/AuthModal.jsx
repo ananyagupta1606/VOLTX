@@ -75,7 +75,7 @@ export default function AuthModal({ onClose, onAuth }) {
 				</button>
 
 				{/* Logo */}
-				<div className="text-center text-3xl mb-2">⚡</div>
+				{/* <div className="text-center text-3xl mb-2">⚡</div> */}
 
 				<h2 className="text-white font-extrabold text-xl text-center mb-1">
 					{tab === "login" ? "Welcome Back" : "Create Account"}
