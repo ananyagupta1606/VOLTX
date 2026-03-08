@@ -4,6 +4,7 @@ import ProductCard from "./ProductCard";
 function ProductGrid({
 	products = [],
 	category = "All",
+	search = "",
 	onAddToCart,
 	onViewDetail,
 }) {
@@ -37,7 +38,9 @@ function ProductGrid({
 						<div className="text-5xl mb-4 animate-pulse">🔍</div>
 
 						<p className="text-lg font-semibold text-gray-400 mb-1">
-							No products found
+							{search
+								? `No products match "${search}"`
+								: "No products found"}
 						</p>
 
 						<p className="text-sm">

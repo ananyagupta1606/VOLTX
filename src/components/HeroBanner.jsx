@@ -3,9 +3,9 @@ export default function HeroBanner({ onShopNow }) {
 		<section className="relative bg-gray-950 overflow-hidden">
 			{/* Background Glow */}
 			<div className="absolute inset-0 pointer-events-none">
-				<div className="absolute top-[-80px] left-1/2 -translate-x-1/2 w-[700px] h-[500px] rounded-full bg-cyan-400/5 blur-3xl" />
-				<div className="absolute bottom-0 left-[-100px] w-[400px] h-[300px] rounded-full bg-blue-600/5 blur-3xl" />
-				<div className="absolute bottom-0 right-[-100px] w-[400px] h-[300px] rounded-full bg-cyan-400/5 blur-3xl" />
+				<div className="absolute -top-20 left-1/2 -translate-x-1/2 w-175 h-125 rounded-full bg-cyan-400/5 blur-3xl" />
+				<div className="absolute bottom-0 -left-25 w-100 h-75 rounded-full bg-blue-600/5 blur-3xl" />
+				<div className="absolute bottom-0 -right-25 w-100 h-75 rounded-full bg-cyan-400/5 blur-3xl" />
 			</div>
 
 			{/* Grid Overlay */}
@@ -28,7 +28,7 @@ export default function HeroBanner({ onShopNow }) {
 					<h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.02] tracking-tight mb-6">
 						The Future of
 						<br />
-						<span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">
+						<span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-400">
 							Electronics
 						</span>
 						<br />
@@ -76,7 +76,7 @@ export default function HeroBanner({ onShopNow }) {
 				</div>
 
 				{/* Right Floating Cards */}
-				<div className="flex-shrink-0 relative w-72 h-72 md:w-80 md:h-80 hidden md:block">
+				<div className="shrink-0 relative w-72 h-72 md:w-80 md:h-80 hidden md:block">
 					<div className="absolute inset-8 rounded-full bg-cyan-400/10 blur-2xl" />
 
 					{[
