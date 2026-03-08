@@ -130,16 +130,16 @@ export default function HeroBanner({ onShopNow }) {
 						</div>
 					))}
 
-					{/* Center Icon */}
+					{/* Center Icon
 					<div className="absolute inset-0 flex items-center justify-center">
 						<div className="w-20 h-20 rounded-2xl bg-gray-800 border border-gray-700 flex items-center justify-center text-4xl shadow-2xl">
 							⚡
 						</div>
-					</div>
+					</div> */}
 				</div>
 			</div>
 
-			{/* Bottom Stats */}
+			{/* Bottom Stats
 			<div className="relative border-t border-gray-800">
 				<div className="max-w-7xl mx-auto px-6 py-5 grid grid-cols-2 sm:grid-cols-4 gap-4">
 					{[
@@ -158,7 +158,7 @@ export default function HeroBanner({ onShopNow }) {
 						</div>
 					))}
 				</div>
-			</div>
+			</div> */}
 		</section>
 	);
 }

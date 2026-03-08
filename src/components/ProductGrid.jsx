@@ -7,7 +7,11 @@ function ProductGrid({
 	onAddToCart,
 	onViewDetail,
 }) {
-	const title = category === "All" ? "All Products" : category;
+	const title =
+		category === "All"
+			? "All Products"
+			: category.charAt(0).toUpperCase() + category.slice(1);
+
 	const itemCount = products.length;
 
 	return (
@@ -31,9 +35,11 @@ function ProductGrid({
 				{itemCount === 0 ? (
 					<div className="text-center py-24 text-gray-500">
 						<div className="text-5xl mb-4 animate-pulse">🔍</div>
+
 						<p className="text-lg font-semibold text-gray-400 mb-1">
 							No products found
 						</p>
+
 						<p className="text-sm">
 							Try changing category or search keyword
 						</p>

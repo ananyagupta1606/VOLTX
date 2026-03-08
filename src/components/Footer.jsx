@@ -59,7 +59,7 @@ export default function Footer() {
 				{/* Bottom Bar */}
 				<div className="border-t border-gray-800 pt-5 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-gray-600">
 					<p>© 2026 VOLTX Electronics. All rights reserved.</p>
-					<p>Made with React + Tailwind CSS</p>
+					
 				</div>
 			</div>
 		</footer>

@@ -63,7 +63,7 @@ export default function App() {
 	================================ */
 	const filteredProducts = useMemo(() => {
 		return PRODUCTS.filter((p) => {
-			const matchCat = category === "All" || p.cat === category;
+			const matchCat = category === "All" || p.category === category;
 
 			const matchSearch =
 				p.name.toLowerCase().includes(search.toLowerCase()) ||
