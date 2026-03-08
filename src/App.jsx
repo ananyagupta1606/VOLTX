@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo, useEffect } from "react";
 import { PRODUCTS } from "./data/products";
 import { useCart } from "./context/CartContext";
 import { useToast } from "./hooks/useToast";
@@ -31,6 +31,17 @@ export default function App() {
 	const [user, setUser] = useState(null);
 
 	/* ==============================
+	   Restore Login From LocalStorage
+	================================ */
+	useEffect(() => {
+		const savedUser = localStorage.getItem("currentUser");
+
+		if (savedUser) {
+			setUser(JSON.parse(savedUser));
+		}
+	}, []);
+
+	/* ==============================
 	   Cart Handler
 	================================ */
 	const handleAddToCart = useCallback(
@@ -54,6 +65,7 @@ export default function App() {
 	);
 
 	const handleSignOut = useCallback(() => {
+		localStorage.removeItem("currentUser");
 		setUser(null);
 		toast("Signed out successfully", "👋");
 	}, [toast]);
@@ -106,6 +118,7 @@ export default function App() {
 				<ProductGrid
 					products={filteredProducts}
 					category={category}
+					search={search}
 					onAddToCart={handleAddToCart}
 					onViewDetail={setDetail}
 				/>
@@ -121,7 +134,13 @@ export default function App() {
 					onClose={() => setCartOpen(false)}
 					onUpdateQty={updateQty}
 					onCheckout={() => {
-						toast("Redirecting to checkout…", "💳");
+						if (!user) {
+							setAuthOpen(true);
+							toast("Please login to continue", "🔐");
+							return;
+						}
+
+						toast("Order placed successfully!", "🎉");
 						setCartOpen(false);
 					}}
 				/>
@@ -144,7 +163,7 @@ export default function App() {
 				/>
 			)}
 
-			{/* Toast */}
+			{/* Toast Notification */}
 			<Toast message={notif?.msg} icon={notif?.icon} />
 		</div>
 	);

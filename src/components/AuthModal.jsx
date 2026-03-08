@@ -11,18 +11,47 @@ export default function AuthModal({ onClose, onAuth }) {
 	const update = (field) => (e) =>
 		setForm((prev) => ({ ...prev, [field]: e.target.value }));
 
+
+	// local storage login
 	const handleSubmit = () => {
 		if (!form.email || !form.password) return;
 
-		const userData = {
-			name:
-				tab === "signup"
-					? form.name || form.email.split("@")[0]
-					: form.email.split("@")[0],
-			email: form.email,
-		};
+		const users = JSON.parse(localStorage.getItem("users")) || [];
 
-		onAuth(userData);
+		if (tab === "signup") {
+			const exists = users.find((u) => u.email === form.email);
+
+			if (exists) {
+				alert("User already exists. Please login.");
+				return;
+			}
+
+			const newUser = {
+				name: form.name || form.email.split("@")[0],
+				email: form.email,
+				password: form.password,
+			};
+
+			users.push(newUser);
+
+			localStorage.setItem("users", JSON.stringify(users));
+			localStorage.setItem("currentUser", JSON.stringify(newUser));
+
+			onAuth(newUser);
+		} else {
+			const user = users.find(
+				(u) => u.email === form.email && u.password === form.password
+			);
+
+			if (!user) {
+				alert("Invalid email or password");
+				return;
+			}
+
+			localStorage.setItem("currentUser", JSON.stringify(user));
+
+			onAuth(user);
+		}
 
 		setForm({ name: "", email: "", password: "" });
 	};
