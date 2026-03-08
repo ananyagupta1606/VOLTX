@@ -1,52 +1,9 @@
 # ⚡ VOLTX – Electronics E-Commerce Website
 
-VOLTX is a modern electronics e-commerce web application built using **React.js**.  
-It allows users to browse electronics products, search and filter items, manage a cart, and simulate a checkout process.
+VOLTX is a modern electronics e-commerce web application built using **React.js**. The platform allows users to explore a curated collection of electronic products such as laptops, smartphones, headphones, and other tech accessories.
 
-The project focuses on creating a **responsive, user-friendly shopping experience** while demonstrating core frontend development concepts.
+Users can browse products, search for specific items, and filter them by category. Each product can be viewed in detail through a product modal, where users can check information and add items to their cart. The cart system allows users to increase or decrease item quantities, remove products, and view the total order price before checkout.
 
----
+The application also includes a login and signup interface, a responsive navigation system, and toast notifications that provide real-time feedback for actions like adding items to the cart or signing in. Cart data is stored using **localStorage**, allowing the cart to persist even after refreshing the page.
 
-## 🚀 Features
-
-- 🔍 **Product Search** – Quickly find products by name or brand
-- 📂 **Category Filtering** – Browse products by categories
-- 🛒 **Shopping Cart System**
-  - Add items to cart
-  - Update quantities
-  - Remove items
-  - Clear cart
-- 💾 **Cart Persistence** – Cart is saved using localStorage
-- 🔐 **User Authentication UI**
-  - Login / Signup modal
-  - Persistent user session
-- 🔔 **Toast Notifications** – Clean notifications for actions
-- 📦 **Product Detail Modal** – View detailed product information
-- 📱 **Responsive Design** – Works across desktop and mobile
-- ⚡ **Modern UI** – Built using TailwindCSS
-
----
-
-## 🛠 Tech Stack
-
-### Frontend
-- **React.js**
-- **React Hooks**
-- **Component-based architecture**
-
-### Styling
-- **Tailwind CSS**
-
-### State Management
-- React Context API
-
-### Storage
-- **localStorage** (for cart and user session)
-
-### Development Tools
-- **Vite**
-- **Git & GitHub**
-
----
-
-## 📂 Project Structure
+The project is designed with a **component-based architecture** and styled using **Tailwind CSS** to ensure a clean, modern, and responsive user interface across devices. It demonstrates important frontend development concepts such as React hooks, context-based state management, reusable components, and interactive UI design.
