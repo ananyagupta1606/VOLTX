@@ -1,48 +1,52 @@
-# ⚡ VOLTX Electronics Store
+# ⚡ VOLTX – Electronics E-Commerce Website
 
-A modern electronics e-commerce UI built with React + Tailwind CSS.
+VOLTX is a modern electronics e-commerce web application built using **React.js**.  
+It allows users to browse electronics products, search and filter items, manage a cart, and simulate a checkout process.
 
-## Quick Start
+The project focuses on creating a **responsive, user-friendly shopping experience** while demonstrating core frontend development concepts.
 
-```bash
-# 1. Install dependencies
-npm install
+---
 
-# 2. Start dev server
-npm run dev
+## 🚀 Features
 
-# 3. Open in browser
-# http://localhost:5173
-```
+- 🔍 **Product Search** – Quickly find products by name or brand
+- 📂 **Category Filtering** – Browse products by categories
+- 🛒 **Shopping Cart System**
+  - Add items to cart
+  - Update quantities
+  - Remove items
+  - Clear cart
+- 💾 **Cart Persistence** – Cart is saved using localStorage
+- 🔐 **User Authentication UI**
+  - Login / Signup modal
+  - Persistent user session
+- 🔔 **Toast Notifications** – Clean notifications for actions
+- 📦 **Product Detail Modal** – View detailed product information
+- 📱 **Responsive Design** – Works across desktop and mobile
+- ⚡ **Modern UI** – Built using TailwindCSS
 
-## Project Structure
+---
 
-```
-src/
-├── App.jsx                    # Main app — holds all state
-├── main.jsx                   # React entry point
-├── index.css                  # Tailwind import
-├── data/
-│   └── products.js            # Product data & constants
-└── components/
-    ├── Navbar.jsx             # Sticky navbar with search, cart, auth
-    ├── HeroBanner.jsx         # Hero section with floating cards
-    ├── CategoryBar.jsx        # Sticky category filter chips
-    ├── ProductGrid.jsx        # Responsive product grid
-    ├── ProductCard.jsx        # Individual product card
-    ├── CartSidebar.jsx        # Sliding cart drawer
-    ├── AuthModal.jsx          # Sign in / Sign up modal
-    ├── ProductDetail.jsx      # Product detail popup
-    ├── Toast.jsx              # Toast notifications
-    └── Footer.jsx             # Site footer
-```
+## 🛠 Tech Stack
 
-## Features
+### Frontend
+- **React.js**
+- **React Hooks**
+- **Component-based architecture**
 
-- 🔍 Live search in navbar
-- 🗂️ Category filtering
-- 🛒 Cart with qty controls
-- 🔐 Sign in / Sign up flow
-- 📦 Product detail modal
-- 📱 Fully responsive
-- 🌙 Dark theme throughout
+### Styling
+- **Tailwind CSS**
+
+### State Management
+- React Context API
+
+### Storage
+- **localStorage** (for cart and user session)
+
+### Development Tools
+- **Vite**
+- **Git & GitHub**
+
+---
+
+## 📂 Project Structure

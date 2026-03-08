@@ -5,7 +5,7 @@ export function useToast() {
 	const timerRef = useRef(null);
 
 	const toast = useCallback((msg, icon = null) => {
-		setNotif({ msg, icon });
+		setNotif({msg,icon });
 
 		if (timerRef.current) {
 			clearTimeout(timerRef.current);
